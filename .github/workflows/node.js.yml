@@ -22,7 +22,12 @@ jobs:
           path: public/
  
   test:
-    runs-on: ubuntu-latest       
+    needs: build
+    runs-on: ubuntu-latest
+    uses: actions/download-artifact@main
+        with:
+        name: webpack artifacts
+        path: public
     strategy:
       matrix:
         os: [ubuntu-latest, windows-2016]
